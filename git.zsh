@@ -40,3 +40,19 @@ greset() {
     git reset HEAD~$amount
 }
 alias grh="greset"
+
+gupdate() {
+    flag=${1}
+    if [[ $flag = "-h" ]]
+    then
+        echo "Pulls latest main from origin, then rebases the working branch onto main, then force pushes."
+        echo "Use this to update your branch to reflect the most recent changes on main."
+        return
+    fi
+
+    gcm
+    gl
+    gco -
+    grbm
+    gpf
+}
